@@ -1,1 +1,275 @@
-<div id="app"></div>
+<!--Personal information page-->
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+<style>
+	/*#nav {
+		line-height: 30px;
+		background-color: #eeeeee;
+		height: 300px;
+		width: 100px;
+		float: left;
+		padding: 5px;
+
+	}
+
+	#register,
+	#display {
+
+		width: 350px;
+		float: left;
+		margin-left: 100px;
+		margin-top: -68px;
+	}
+table.c {
+  table-layout: auto;
+  width: 100%;  
+}*/
+</style>
+<script>
+	show = function(id, id1)  {
+    document.getElementById(id).style.display='block';
+    document.getElementById(id1).style.display='none';
+  }
+  disp = function ()
+  {
+    document.getElementById('imgpath').innerHTML = '';
+    document.getElementById('emptyImg').innerHTML = '';
+    document.getElementById('nameDisplay').innerHTML = '';
+    document.getElementById('dobDisplay').innerHTML = '';
+    document.getElementById('genderDisplay').innerHTML = '';
+    document.getElementById('addressDisplay').innerHTML = '';
+    document.getElementById('techAreaDisplay').innerHTML = '';
+    document.getElementById('countryDisplay').innerHTML = '';
+    var input = document.getElementById("fileUpload");
+    var fReader = new FileReader();
+    if (input.value != '')
+    {
+      document.getElementById('emptyImg').style.display='none';
+      fReader.readAsDataURL(input.files[0]);
+      fReader.onloadend = function(event){
+          var img = document.getElementById("imgpath");
+          img.src = event.target.result;
+      }
+    }else{
+      document.getElementById('imgpath').style.display='none';
+      document.getElementById('emptyImg').style.display='block';
+      document.getElementById('emptyImg').innerHTML = 'No image selected';
+    }
+     document.getElementById('nameDisplay').style.display='block';
+    if(document.getElementById('name').value != '')
+    {
+      document.getElementById('nameDisplay').innerHTML = document.getElementById('name').value;
+    }else{
+      document.getElementById('nameDisplay').innerHTML = 'Name is empty';
+    }
+     document.getElementById('dobDisplay').style.display='block';
+    if(document.getElementById('date').value != '')
+    {
+      document.getElementById('dobDisplay').innerHTML = document.getElementById('date').value;
+    }else{
+      document.getElementById('dobDisplay').innerHTML = 'DoB is empty';
+    }
+     document.getElementById('genderDisplay').style.display='block';
+      var j = 0;
+      for(var i=0;i<document.getElementsByName('gender').length;i++)
+      {
+        if (document.getElementsByName('gender')[i].checked==true) {
+          document.getElementById('genderDisplay').innerHTML = document.getElementsByName('gender')[i].value;
+          j++;
+      }
+      if ( j == 0)
+      {
+        document.getElementById('genderDisplay').innerHTML = "Gender is empty";
+      }
+      }
+     document.getElementById('addressDisplay').style.display='block';
+    if(document.getElementById('address').value != '')
+    {
+      document.getElementById('addressDisplay').innerHTML = document.getElementById('address').value;
+    }else{
+      document.getElementById('addressDisplay').innerHTML = 'Address is empty';
+    }
+
+document.getElementById('techAreaDisplay').style.display='block';
+      var j = 0;
+      for(var i=0;i<document.getElementsByName('techArea').length;i++)
+      {
+        if (document.getElementsByName('techArea')[i].checked==true) {
+          if(j == 0)
+          {
+          document.getElementById('techAreaDisplay').innerHTML = document.getElementById('techAreaDisplay').innerHTML+document.getElementsByName('techArea')[i].value;
+          }else{
+            document.getElementById('techAreaDisplay').innerHTML = document.getElementById('techAreaDisplay').innerHTML+', '+document.getElementsByName('techArea')[i].value;
+          }
+          j++;
+      }
+      if ( j == 0)
+      {
+        document.getElementById('techAreaDisplay').innerHTML = "No Technology is selected";
+      }
+      }
+document.getElementById('countryDisplay').style.display='block';
+    if(document.getElementById('country').value != 'Select')
+    {
+      document.getElementById('countryDisplay').innerHTML = document.getElementById('country').value;
+    }else{
+      document.getElementById('countryDisplay').innerHTML = 'Country is not selected';
+    }
+  }
+</script>
+
+<body>
+
+	<div class="container">
+    <div class="header">  
+      
+    </div>
+		<div class="header">
+			<div >
+				<span>
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+              <p><a class="nav-link" href="#register" onclick="show('register','display');">Register</a></p>
+                </li>
+                <li class="nav-item">
+              <p><a class="nav-link" href="#display" onclick="show('display','register');">Display</a></p>
+                </li>
+            </ul>
+          </nav>
+         </span>  
+			</div>  
+		</div>
+    <div class="row" style="">
+     	<div class="col-3" style="background-color:blue;">
+            <span style="color:white;">First to mind when asked what 'the cloud' is, a majority respond it’s either an actual cloud, the sky, or something related to weather.</span>
+		  </div>
+      	<div class="col-6" id="register">
+         <!--start-->
+         
+		<form action="" method="post" >
+			<fieldset><span>Photo</span><span><input type="file" name=fileUpload" id="fileUpload"/></span></fieldset>
+			<fieldset><span>Name </span><span><input type="text" name="name" id="name" value="" /></span></fieldset>
+			<fieldset> <span>Date of birth </span><span><input type="date" name="date" id="date" value="" /></span>
+			</fieldset>
+			<fieldset>
+				<span>Gender </span><span><input type="radio" name="gender" id="gender" value="Male" />Male</span><span><input type="radio" name="gender" id="gender" value="Female" />Female</span>
+			</fieldset>
+			<fieldset>
+				<span>Address </span><span><textarea  name="address" id="address" value=""  rows="4" cols="40"></textarea></span>
+			</fieldset>
+			<fieldset>
+				<span>Password </span><span><input type="password" name="password" id="password" value="" /></span>
+			</fieldset>
+			<fieldset>
+				<span>Confirm Password </span><span><input type="password" name="cpassword" id="cpassword" value="" /></span>
+			</fieldset>
+			<fieldset>
+				<span>Intrested Tech Areas </span><span><input type="checkbox" name="techArea" id="techArea" value="Java" />Java</span>
+				<span><input type="checkbox" name="techArea" id="techArea" value="React" />React</span>
+				<span><input type="checkbox" name="techArea" id="techArea" value="Angualr" />Angular</span>
+				<span><input type="checkbox" name="techArea" id="techArea" value="AWS" />AWS</span>
+				<span><input type="checkbox" name="techArea" id="techArea" value="Azure" />Azure</span>
+			</fieldset>
+			<fieldset><span>country </span><span><select  name="country" id="country" value="">
+     <option name="Select">Select</option>
+     <option name="India">India</option>
+     <option name="USA">United states</option>
+     <option name="Mexico">Mexico</option>
+   </select>
+     </span></fieldset>
+		</form>
+      	</div>
+	<div id="display" class="col-6" style="display:none;overflow:scroll;">
+		<table border="1px solid; ">
+			<tr>
+				<th>Photo</th>
+				<th>Name</th>
+				<th>Date of birth</th>
+				<th>Gender</th>
+				<th>Address</th>
+				<th>Country</th>
+				<th>Intrested Tech stacks</th>
+			</tr>
+			<tr>
+				<td><img src="https://www.w3schools.com/w3images/avatar2.png" width=80 px" height="80 px"/></td>
+				<td>David</td>
+				<td>10-Jan-1990</td>
+				<td>Male</td>
+				<td>1900 Warner Street, Newyork, USA</td>
+				<td>USA</td>
+				<td>
+					<ol>
+						<li>Java</li>
+						<li>React</li>
+						<li>AWS</li>
+					</ol>
+				</td>
+			</tr>
+			<td><img src="https://www.w3schools.com/w3images/avatar1.png" width=80 px" height="80 px"/></td>
+			<td>Richard</td>
+			<td>10-Feb-1991</td>
+			<td>Male</td>
+			<td>1210 Newwales Street, Florida, USA</td>
+			<td>USA</td>
+			<td>
+				<ol>
+					<li>HTML</li>
+					<li>CSS</li>
+					<li>C</li>
+				</ol>
+			</td>
+			</tr>
+			<td><img src="https://www.w3schools.com/w3images/avatar3.png" width=80 px" height="80 px"/></td>
+			<td>Bennet</td>
+			<td>12-Mar-1980</td>
+			<td>Male</td>
+			<td>1536 Wall Street, Chicaco, USA</td>
+			<td>USA</td>
+			<td>
+				<ol>
+					<li>Perl</li>
+					<li>Microsost Technologies</li>
+					<li>C++</li>
+				</ol>
+			</td>
+			</tr>
+			<!--<td><img src="" id="imgpath" width="80 px" height="80 px"/><span id="emptyImg" style="display:none" /></td>
+      <td><span id="nameDisplay" style="display:none" /></td>
+      <td><span id="dobDisplay" style="display:none" /></td>
+      <td><span id="genderDisplay" style="display:none" /></td>
+      <td><span id="addressDisplay" style="display:none" /></td>
+      <td><span id="techAreaDisplay" style="display:none" /></td>
+      <td><span id="countryDisplay" style="display:none" /></td>-->
+
+		</table>
+	</div>
+         <!--end-->  
+		  
+         
+         <div  class="col-3 right" style="background-color:blue;">
+            <div class="aside">
+              <marquee width="60%" direction="left" height="100px">
+                CSS selectors are used to "find" (or select) the HTML elements you want to style.
+            </marquee>
+            </div>
+		  </div>
+
+    </div>
+<div class="footer">  
+     
+    </div>
+    </div>
+
+	</div>
+
+
+
+
+	
+</body>
+
+</html>
